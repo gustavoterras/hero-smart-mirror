@@ -1,0 +1,28 @@
+buildscript {
+
+    ext.versions = [
+            'code'         : 1,
+            'compileSdk'   : 28,
+            'minSdk'       : 21,
+            'targetSdk'    : 28,
+            'name'         : '1.0.0',
+            'okhttp'       : '3.12.0',
+            'retrofit'     : '2.5.0',
+            'rxAndroid'    : '2.1.0',
+            'rxJava'       : '2.2.4',
+            'rxKotlin'     : '2.3.0',
+            'kotlin'       : '1.3.10',
+            'glide'        : '4.8.0',
+            'gradle'       : '3.2.1',
+            'androidthings': '1.0'
+    ]
+
+    dependencies {
+        classpath "com.android.tools.build:gradle:$versions.gradle"
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$versions.kotlin"
+    }
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}
