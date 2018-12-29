@@ -1,5 +1,6 @@
 package br.com.terras.hero.network
 
+import br.com.terras.hero.model.HeroResponse
 import io.reactivex.Single
 import okhttp3.OkHttpClient
 import okhttp3.ResponseBody
@@ -35,7 +36,7 @@ interface IConsumerService {
         @Path("lon") lon: String,
         @Query("lang") lang: String,
         @Query("units") units: String
-    ): Single<ResponseBody>
+    ): Single<HeroResponse>
 
     companion object Factory {
         fun create(baseUrl: String): IConsumerService {

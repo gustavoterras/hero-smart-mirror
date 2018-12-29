@@ -1,9 +1,12 @@
 package br.com.terras.hero
 
 import android.app.Activity
+import android.databinding.DataBindingUtil
+import android.databinding.ViewDataBinding
 import android.os.Bundle
 import android.util.Log
 import br.com.terras.hero.network.IConsumerService
+import br.com.terras.hero.viewmodel.MainViewModel
 import io.reactivex.rxkotlin.subscribeBy
 
 /**
@@ -17,24 +20,13 @@ class MainActivity : Activity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        DataBindingUtil.setContentView<ViewDataBinding>(this, R.layout.activity_main)
+                .setVariable(BR.viewModel, MainViewModel(this))
 
         //https://newsapi.org/v2/top-headlines?country=br&category=technology&category=businnes&apiKey=51c3f7779ef94707a83682d131d0e48d
         IConsumerService
             .create(NEWS_URL_BASE)
             .getNews("br", "technology", "businnes", "51c3f7779ef94707a83682d131d0e48d")
-            .saveMainThread()
-            .subscribeBy(
-                onSuccess = { responseBody ->
-                    Log.e("TAG", responseBody.string())
-                },
-                onError = {}
-            )
-
-        //https://api.darksky.net/forecast/2934201c0367254cba25db728841ceb4/-29.9131791,-51.2088677?&lang=pt&units=auto
-        IConsumerService
-            .create(WEATHER_URL_BASE)
-            .getForecast("2934201c0367254cba25db728841ceb4", "-29.9131791", "-51.2088677", "pt", "auto")
             .saveMainThread()
             .subscribeBy(
                 onSuccess = { responseBody ->
