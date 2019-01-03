@@ -3,7 +3,6 @@ package br.com.terras.hero.network
 import br.com.terras.hero.model.HeroResponse
 import io.reactivex.Single
 import okhttp3.OkHttpClient
-import okhttp3.ResponseBody
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
@@ -26,8 +25,9 @@ interface IConsumerService {
         @Query("country") country: String,
         @Query("category") category1: String,
         @Query("category") category2: String,
+        @Query("pageSize") pageSize: Int,
         @Query("apiKey") apiKey: String
-    ): Single<ResponseBody>
+    ): Single<HeroResponse>
 
     @GET("/forecast/{apiKey}/{lat},{lon}")
     fun getForecast(
