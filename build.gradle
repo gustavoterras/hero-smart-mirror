@@ -3,7 +3,7 @@ buildscript {
     ext.versions = [
             'code'         : 1,
             'compileSdk'   : 28,
-            'minSdk'       : 21,
+            'minSdk'       : 27,
             'targetSdk'    : 28,
             'name'         : '1.0.0',
             'okhttp'       : '3.12.0',
@@ -11,15 +11,29 @@ buildscript {
             'rxAndroid'    : '2.1.0',
             'rxJava'       : '2.2.4',
             'rxKotlin'     : '2.3.0',
-            'kotlin'       : '1.3.10',
+            'kotlin'       : '1.3.20',
             'glide'        : '4.8.0',
-            'gradle'       : '3.2.1',
+            'gradle'       : '3.3.0',
+            'protobuf'     : '0.8.7',
             'androidthings': '1.0'
     ]
+
+    repositories {
+        jcenter()
+        google()
+    }
 
     dependencies {
         classpath "com.android.tools.build:gradle:$versions.gradle"
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$versions.kotlin"
+        classpath "com.google.protobuf:protobuf-gradle-plugin:$versions.protobuf"
+    }
+
+    allprojects {
+        repositories {
+            jcenter()
+            google()
+        }
     }
 }
 
